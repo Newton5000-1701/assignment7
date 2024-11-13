@@ -1,0 +1,110 @@
+\usepackage[usenames,dvipsnames]{color}
+
+%\usepackage{pdfpages}
+
+
+\def\til{\raise.17ex\hbox{$\scriptstyle\sim$}}
+\def\dg{$^{\circ}$}
+\def\ften{$F_{10.7} \: $}
+\def\tcr{\textcolor{red}}
+\def\tcb{\textcolor{blue}}
+\def\tclb{\textcolor{NavyBlue}}
+\def\tclg{\textcolor{LimeGreen}}
+\def\tbs{$\backslash$}
+%\usepackage{hyperref}
+\usepackage[breaklinks=true]{hyperref}
+
+%Don't need to have a bunch of $ for mathmode in table.
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+
+
+\hypersetup{colorlinks=true,anchorcolor=black,citecolor=black,filecolor=blue,
+linkcolor=black,menucolor=black,urlcolor=blue}
+\newcommand{\hfile}[2]{\href{http://chuck.emich.edu/dpawlows/#1}{#2}}
+
+\textwidth=6.5in
+\textheight=9.0in
+\topmargin=-0.3in
+\headheight=9pt
+\headsep=12pt
+\oddsidemargin=0in
+\evensidemargin=0in
+\parindent=1.2em
+
+
+\def\subsubsubsection{\@startsection{paragraph}{4}{\parindent}
+{1sp}{-1em}{\normalsize\bf}}
+\let\paragraph\subsubsubsection
+
+\definecolor{bgblue}{RGB}{204,242,255}
+\definecolor{grey}{RGB}{212,212,212}
+\definecolor{lightgreen}{RGB}{179,245,183}
+ \newcommand{\beforelabel}{}
+ \newcommand{\afterlabel}{}
+ \newcommand{\toplabel}{}
+ \newcommand{\ps@ridley}{
+  \renewcommand{\@oddhead}{\hfil \toplabel}%
+  \renewcommand{\@oddfoot}{\hfil \rm \beforelabel\thepage\afterlabel \hfil}%
+  \renewcommand{\@evenhead}{\toplabel \hfil}%
+  \renewcommand{\@evenfoot}{\hfil \rm \beforelabel\thepage\afterlabel \hfil}%
+ }
+
+ \newcommand{\Lbf}[1]{{\Large {\bf{#1}}}}
+ \newcommand{\lbf}[1]{{\large {\bf{#1}}}}
+
+\newcommand{\btt}[1]{{\texttt#1}}
+\newcommand{\code}[1]{\colorbox{bgblue}{\makebox[.95\textwidth][l]{\% {\bf#1}}}}
+\newcommand{\gcode}[1]{\colorbox{lightgreen}{\makebox[\textwidth][l]{gnuplot\> {\bf#1}}}}
+\newcommand{\gcodenl}[1]{\colorbox{lightgreen}{\makebox[\textwidth][l]{\> {\bf#1}}}}
+\newcommand{\emacs}[1]{\colorbox{grey}{\makebox[\textwidth][l]{{\bf#1}}}}
+\newcommand{\pcode}[1]{\colorbox{grey}{\makebox[\textwidth][l]{\>\>\> \texttt{{\bf#1}}}}}
+\newcommand{\pcodenl}[1]{\colorbox{grey}{\makebox[\textwidth][l]{\texttt{{\bf#1}}}}}
+\newcommand{\prompt}[1]{\colorbox{grey}{\bf#1}}
+
+%Symbols
+\def\ylm{Y_{lm}}
+\def\qlm{q_{lm}}
+\def\plm{P_l^m}
+\def\dvec#1{\overset{\text{\scriptsize$\leftrightarrow$}}{#1}}
+\def\cvec#1{\mathbf{\tilde{#1}}}
+\def\bvec#1{\mathbf{#1}}
+\def\be{\bvec{E}}
+\def\bb{\bvec{B}}
+\def\rrprime{|\bvec{r}-\bvec{r}^\prime|}
+\def\rcurs{{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{ScriptR}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{BoldR}}$}}}
+\newcommand\pp[2][]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand\pps[2][]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+
+
+\newcommand\qe{\overset{?}{=}}
+\makeatletter\newenvironment{gbox}{%
+   \begin{lrbox}{\@tempboxa}%
+   \begin{minipage}{\columnwidth}%
+}{%
+   \end{minipage}
+   \end{lrbox}
+   \colorbox{grey}{\usebox{\@tempboxa}}
+
+}\makeatother
+\makeatletter\newenvironment{gnubox}{%
+   \begin{lrbox}{\@tempboxa}%
+   \begin{minipage}{\columnwidth}%
+}{%
+   \end{minipage}
+   \end{lrbox}
+   \colorbox{lightgreen}{\usebox{\@tempboxa}}
+}\makeatother
+
+
+
+
+
+\def\>{$>$}
+\newcommand{\under}[1]{\underline{\large{\bf#1}}}
+\newcommand{\tab}{\hspace{1in}}
+\newcommand{\ptab}{\hspace{1cm}}
+\newcommand{\pipe}{$\vert$}
+\newcommand*{\tensor}[1]{\overset{\text{\tiny$\leftrightarrow$}}{#1}}
+\newcommand{\ipdf}[1]{\includepdf[pages=-]{#1}}

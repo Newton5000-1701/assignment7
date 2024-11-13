@@ -1,0 +1,112 @@
+
+\documentclass[letter,12pt]{article}
+\setcounter{secnumdepth}{0}
+\usepackage{pawlowski}
+\usepackage{natbib}
+\usepackage[margin=1.0in]{geometry}                         
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{listing}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{epstopdf}
+\usepackage{epstopdf}
+\begin{document}
+
+
+
+\begin{center}
+{\Large \bf PHYS 380 - Fall 2024}\\
+\vspace{10pt}
+{\bf Assignment 7}\\
+\vspace{10pt}
+{Isaac Thompson}\\
+\vspace{10pt}
+{$11$ November $2024$}
+\end{center}
+\vspace{0.1in}
+
+\section{Problem 1}
+\vspace{0.15in}
+
+\indent In order to derive approximation methods for derivatives, one must recall the Taylor series in the following form: for $x\in\mathbb{R}$, and any $C^{\infty}$ function, $f:\mathbb{R} \to \mathbb{R}$, with finite, and small, quantity $h \in \mathbb{R}$, the function $f$ translated by an amount $h$ can be written precisely as
+\begin{align}
+f(x+h) = \sum_{n=0}^{\infty} \frac{1}{n!} \frac{d^n f(x)}{dx^n} h^n
+\end{align}
+
+\noindent We also note that $f(x-h)$ is equivalent to the above with the stipulation that $h \to -h$, since $h$ is an arbitrary finite real number. For an approximation to second order in $h$, consider the following:
+
+\begin{align}
+f(x+h) - f(x-h) = \left( f(x) + \frac{df}{dx}h + \frac{d^2 f}{dx^2}h^2 \right) - \left( f(x) - \frac{df}{dx}h + \frac{d^2 f}{dx^2} h^2 \right),
+\end{align}
+where we have neglected terms of order $h^3$ and higher. This equation can be see to be equivalent to 
+\begin{align}
+\frac{df}{dx} = \frac{f(x+h) - f(x-h)}{2h},
+\end{align}
+and the equality holds \emph{only} in the second order approximation. For sufficiently small $h$, we conclude that the derivative of $f$ is approximately,
+\begin{align}
+\frac{df}{dx} \approx \frac{f(x+h)-f(x-h)}{2h}
+\end{align}
+\noindent In order to derive a third order approximation, we consider that $f(x+\Delta x)$, where $\Delta x = \alpha h$ for integer $\alpha$, is, to third order in $h$,
+\begin{align}
+f(x+\Delta x) = f(x) + f'(x)\Delta x + \frac{1}{2} f''(x) \Delta x ^2 + \frac{1}{6} f'''(x) \Delta x ^3,
+\end{align}
+where ``$\ ' \ $" is understood to denote a derivative with respect to $x$. It can be shown that the following combination of $f(x+h)$, $f(x-h)$, $f(x+2h)$, and $f(x-2h)$, where appropriate values of $\alpha$ are picked by comparison with equation $5$,  produces an approximation of $df/dx$ accurate to third order in $h$:
+\begin{align}
+f'(x) = \frac{8 ( f(x+h)-f(x-h) ) - ( f(x+2h)-f(x-2h) ) }{12h}.
+\end{align}
+Again, we note that the equality holds \emph{only} in the third order approximation, otherwise, we conclude that for small $h$, $df/dx$ may be approximated as 
+\begin{align}
+f'(x) \approx \frac{8 ( f(x+h)-f(x-h) ) - ( f(x+2h)-f(x-2h) ) }{12h}.
+\end{align}
+
+\section{Problem 2}
+\vspace{0.15in}
+
+This problem asks for a generalization of the software written in a previous problem which calculates the scalar potential and the electric field of a single point charge. The problem essentially consists of recalling that the wave equation, $\Box \phi = J^0$, is linear, and so the potential of a distribution of point charges is a linear combination of the contribution of each charge:
+\begin{align}
+\phi = \sum_{i=1}^N \phi_i = \sum_{i=1}^N \frac{q_i}{4\pi \epsilon_0 r_i},
+\end{align}
+where $N$ is the number of point charges, and $\phi_i$ is the Coulomb potential of the $i$th charge. So, in principle, if the charges and their positions are known, the potential of the system is known. The electric field is given by $E^j = -\partial_i \phi \delta^{ij}$:
+\begin{align}
+\mathbf{E} = -\nabla \phi
+\end{align}
+Employing the provided random point charge distribution software to modify the electric potential software previously written, figures $1$ and $2$ were obtained.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{potential.png}
+    \caption{The scalar potential of a random distribution of $50$ point charges with $|q|<1$.}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{efield.png}
+    \caption{The electric field of a random distribution of $50$ point charges with $|q|<1$.}
+\end{figure}
+
+\section{Problem 3}
+
+This problem asks for a solution to the damped harmonic oscillator via Euler's method. The statement of the problem is as follows:
+\begin{align}
+\frac{d^2 y}{dt^2} + \gamma \frac{dy}{dt} + \omega^2 y = 0,
+\end{align}
+where $\gamma$ is the damping parameter, and $\omega$ is the natural frequency of the system. Consider the following initial conditions: $y(0)=2$ and $\dot{y}(0) = 0$; then, the analytical solution is given by:
+\begin{align}
+y(t) = Ae^{kt}+Be^{-kt}.
+\end{align}
+where $k$ is given by the characteristic equation:
+\begin{align}
+k^2 + \gamma k + \omega^2 = 0 \to k = -\omega_d \pm \omega \sqrt{\frac{\omega_d^2}{\omega^2}-1}.
+\end{align}
+The initial conditions imply that $A=B$ and $A=1$. Then, the solution is exactly:
+\begin{align}
+
+
+\end{align}
+
+\end{document}
+
+
+
+
