@@ -29,7 +29,7 @@
 \section{Problem 1}
 \vspace{0.15in}
 
-\indent In order to derive approximation methods for derivatives, one must recall the Taylor series in the following form: for $x\in\mathbb{R}$, and any $C^{\infty}$ function, $f:\mathbb{R} \to \mathbb{R}$, with finite, and small, quantity $h \in \mathbb{R}$, the function $f$ translated by an amount $h$ can be written precisely as
+\indent In order to derive approximation methods for derivatives, one must recall the Taylor series in the following form: for $x\in\mathbb{R}$, and any $C^{\infty}$ function, $f:\mathbb{R} \to \mathbb{R}$, with finite quantity $h \in \mathbb{R}$, the function $f$ translated by an amount $h$ can be written precisely as
 \begin{align}
 f(x+h) = \sum_{n=0}^{\infty} \frac{1}{n!} \frac{d^n f(x)}{dx^n} h^n
 \end{align}
@@ -71,7 +71,7 @@ where $N$ is the number of point charges, and $\phi_i$ is the Coulomb potential 
 \begin{align}
 \mathbf{E} = -\nabla \phi
 \end{align}
-Employing the provided random point charge distribution software to modify the electric potential software previously written, figures $1$ and $2$ were obtained.
+Employing the provided random point charge distribution software to modify the electric potential software previously written, figures $1$ and $2$ were obtained. The results are consistent with expectations; the expectations being a random field of sources and sinks of various strengths. Due to the in-built randomness, there is no way of predicting a specific outcome, other than that one will see a distribution of sources and sinks. 
 
 \begin{figure}[htbp]
     \centering
@@ -91,19 +91,78 @@ This problem asks for a solution to the damped harmonic oscillator via Euler's m
 \begin{align}
 \frac{d^2 y}{dt^2} + \gamma \frac{dy}{dt} + \omega^2 y = 0,
 \end{align}
-where $\gamma$ is the damping parameter, and $\omega$ is the natural frequency of the system. Consider the following initial conditions: $y(0)=2$ and $\dot{y}(0) = 0$; then, the analytical solution is given by:
+where $\gamma$ is the damping parameter, and $\omega$ is the natural frequency of the system. We must be careful with the different cases. For the critically damped case, the equation of motion becomes,
 \begin{align}
-y(t) = Ae^{kt}+Be^{-kt}.
+\frac{d^2 y}{dt^2} + 2\omega \frac{dy}{dy} + \omega^2 y = 0,
 \end{align}
-where $k$ is given by the characteristic equation:
+which has the general solution:
 \begin{align}
-k^2 + \gamma k + \omega^2 = 0 \to k = -\omega_d \pm \omega \sqrt{\frac{\omega_d^2}{\omega^2}-1}.
+y(t) = c_1 e^{-\omega t} + c_2 t e^{-\omega t}.
 \end{align}
-The initial conditions imply that $A=B$ and $A=1$. Then, the solution is exactly:
+In the case of no damping, the equations of motion reduce to the well known simple harmonic oscillator, with general solution:
 \begin{align}
+y(t) = y(0) \cos(\omega t).
+\end{align}
+In the cases of under and over damping, the characteristic equations of the system are
+\begin{align}
+k_{ud,\pm} = \frac{-\gamma \pm i\sqrt{4\omega^2 - \gamma^2}}{2},
+\end{align}
+and
+\begin{align}
+ k_{od,\pm} = \frac{-\gamma \pm \sqrt{\gamma^2-4\omega^2}}{2}.
+\end{align}
+(Note: these two $k$'s are mathematically the same; writing them out this way forces the radicand to be positive definite.) Now, if the initial conditions are $y(0)=2$ and $\dot{y}(0)=0$, then the exact solutions are
+\begin{enumerate}
+\item{$\gamma = 0$: $y(t)=2\cos(\omega t)$}
+\item{$\gamma = 2\omega$: $y(t) = 2 e^{-\omega t} (\omega t + 1)$}
+\item{$\gamma < 2\omega = 2$: $y(t) = 2 e^{-t} \left(\cos(\frac{1}{2} t\sqrt{4\omega^2 - \gamma^2})+\frac{\gamma}{\sqrt{4\omega^2 - \gamma^2}}\sin(\frac{1}{2} t\sqrt{4\omega^2 - \gamma^2})\right)$
+\item{$\gamma > 2\omega = 3$: $y(t) = 2 e^{-\frac{3t}{2}} \left(\cosh(\frac{1}{2} t\sqrt{\gamma^2-4\omega^2})+\frac{\gamma}{\sqrt{\gamma^2-4\omega^2}}\sinh(\frac{1}{2} t\sqrt{\gamma^2-4\omega^2})\right)$
+\end{enumerate}
+
+The first case is the simple harmonic oscillator which is a cosine wave of amplitude $2$. Note that the Euler method is insufficient as it predicts an increasing system energy, which is unphysical; the Runge-Kutta method is required to ensure a physical result. The rest of the cases are the interesting ones, and they all match the expectations of the analytical solutions. The critically damped solution represents the situation in which the frequency associated with damping, $\omega_d = \gamma/2$ is precisely the natural frequency $\omega$. 
 
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{no_damping_comparison.png}
+    \caption{Numerical and analytical solution to the undamped harmonic oscillator.}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{critical_damping_comparison.png}
+    \caption{Numerical and analytical solution to the critically damped harmonic oscillator.}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{underdamping_comparison.png}
+    \caption{Numerical and analytical solution to the underdamped harmonic oscillator.}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{overdamping_comparison.png}
+    \caption{Numerical and analytical solution to the overdamped harmonic oscillator.}
+\end{figure}
+
+\section{Problem 4}
+
+This problem asks for a solution to the differential equation of motion describing a bicycle traversing a flat surface. We the system's energy. The bicycle is being provided energy by the human riding it at a rate, P, which we assume to be constant. The energy of the system is entirely kinetic (flat surface), and so we write:
+\begin{align}
+E = \frac{1}{2} m v^2 \to \dot{E} = 2v\dot{v}
 \end{align}
+The equation of motion is then, recalling that $\dot{E} = P$,
+\begin{align}
+\dot{v} = \frac{P}{mv}
+\end{align}
+The solution is plotted in figure $7$. We see that the velocity resembles a square root, which implies that the velocity will increase indefinitely (assuming the human can) but the acceleration of the bicycle asymptotically approaches zero. This makes sense, as we are, via the human, giving the system energy at a constant rate; but for any given mass, more energy is required to accelerate it further as velocity increases. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{bicycle.png}
+    \caption{Numerical solution to the bicycle equation of motion.}
+\end{figure}
 
 \end{document}
 
