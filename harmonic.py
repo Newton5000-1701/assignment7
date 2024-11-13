@@ -40,7 +40,7 @@ def euler_integrator(gamma):
     
     return y
 
-# RK2 Integrator
+
 def rk2_integrator(gamma):
     y = np.zeros(timesteps)
     V = np.zeros(timesteps)
