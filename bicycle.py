@@ -16,17 +16,17 @@ v0 = 4  # initial velocity (m/s)
 dt = 0.1  # time step (s)
 t_max = 200  # maximum time (s)
 
-# Time array
+
 t = np.arange(0, t_max + dt, dt)
 
-# Velocity array, initialized with the initial velocity
+
 v = np.zeros_like(t)
 v[0] = v0
 
-# Euler method to solve for velocity at each time step
+
 for i in range(1, len(t)):
-    dvdt = P / (m * v[i-1])  # derivative of velocity
-    v[i] = v[i-1] + dvdt * dt  # update velocity using Euler's method
+    dvdt = P / (m * v[i-1]) 
+    v[i] = v[i-1] + dvdt * dt  
 
 # Plotting the results
 plt.figure(figsize=(8, 6))
