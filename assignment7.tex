@@ -119,7 +119,23 @@ and
 \item{$\gamma > 2\omega = 3$: $y(t) = 2 e^{-\frac{3t}{2}} \left(\cosh(\frac{1}{2} t\sqrt{\gamma^2-4\omega^2})+\frac{\gamma}{\sqrt{\gamma^2-4\omega^2}}\sinh(\frac{1}{2} t\sqrt{\gamma^2-4\omega^2})\right)$
 \end{enumerate}
 
-The first case is the simple harmonic oscillator which is a cosine wave of amplitude $2$. Note that the Euler method is insufficient as it predicts an increasing system energy, which is unphysical; the Runge-Kutta method is required to ensure a physical result. The rest of the cases are the interesting ones, and they all match the expectations of the analytical solutions. The critically damped solution represents the situation in which the frequency associated with damping, $\omega_d = \gamma/2$ is precisely the natural frequency $\omega$. 
+The first case is the simple harmonic oscillator which is a cosine wave of amplitude $2$. Note, in figure $3$, that the Euler method is insufficient as it predicts an increasing system energy, which is unphysical; the Runge-Kutta method is required to ensure a physical result. The rest of the cases are the interesting ones, and they all match the expectations of the analytical solutions. The critically damped solution represents the situation in which the frequency associated with damping, $\omega_d := \gamma/2$ is precisely the natural frequency $\omega$. The under and over damped scenarios occur due to the relation between $\omega$ and $\omega_d$: if the ``damping frequency" is greater than the natural frequency, the system will rapidly approach zero without oscillating, whereas, if the ``damping frequency" is less than the natural frequency, the system will oscillate around zero with a decreasing, time dependent amplitude. In our underdamped case, it can be shown that the amplitude is 
+\begin{align}
+A(t) = 2\omega e^{-\gamma t /2}
+\end{align}
+Thus, the amplitude decays at a rate 
+\begin{align}
+|\dot{A}(t)| = \gamma \omega e^{-\gamma t /2}
+\end{align}
+With this, and recalling that the energy of a harmonic oscillator is 
+\begin{align}
+E = \frac{1}{2} m \omega^2 A,
+\end{align}
+we can determine the rate at which the oscillator loses energy, as the result is directly proportional to $\dot{A}(t)$:
+\begin{align}
+|\dot{E}| = \frac{1}{2} m \gamma \omega^3 e^{-\gamma t / 2} 
+\end{align}
+This confirms the expectation that the system will lose energy exponentially. 
 
 
 \begin{figure}[htbp]
@@ -148,7 +164,7 @@ The first case is the simple harmonic oscillator which is a cosine wave of ampli
 
 \section{Problem 4}
 
-This problem asks for a solution to the differential equation of motion describing a bicycle traversing a flat surface. We the system's energy. The bicycle is being provided energy by the human riding it at a rate, P, which we assume to be constant. The energy of the system is entirely kinetic (flat surface), and so we write:
+This problem asks for a solution to the differential equation of motion describing a bicycle traversing a flat surface. We consider the system's energy. The bicycle is being provided energy by the human riding it at a rate, $P$, which we assume to be constant. The energy of the system is entirely kinetic (flat surface), and so we write:
 \begin{align}
 E = \frac{1}{2} m v^2 \to \dot{E} = mv\dot{v}
 \end{align}
